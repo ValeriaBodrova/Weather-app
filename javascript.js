@@ -23,14 +23,21 @@ function showTemp(response) {
   let temp = Math.round(response.data.main.temp);
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${temp}`;
+
   let h2 = document.querySelector("h2");
   h2.innerHTML = response.data.name;
+
+  celsiusTemperature = response.data.main.temp;
+
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = response.data.weather[0].description;
+
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = response.data.main.humidity;
+
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = response.data.wind.speed;
+
   let icon = document.querySelector("#icon");
   icon.setAttribute(
   "src", 
@@ -52,22 +59,29 @@ function searchCity(event) {
 let form = document.querySelector("form");
 form.addEventListener("submit", searchCity);
 
-function celcius(event) {
+
+
+function fahrenheit(event) {
   event.preventDefault();
-  let cTemp = document.querySelector("#current-temp");
-  cTemp.innerHTML = 17;
+ let temperatureElement = document.querySelector("#current-temp")
+  let fTemp = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fTemp);
 }
 
-function fahrenheit() {
-  let fTemp = document.querySelector("#current-temp");
-  fTemp.innerHTML = Math.round((17 * 9) / 5 + 32);
+function celsius(event) {
+  event.preventDefault();
+ let temperatureElement = document.querySelector("#current-temp")
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
+
+let celsiusTemperature = null;
+
+let tempF = document.querySelector("#fahrenheit-temp");
+tempF.addEventListener("click", fahrenheit);
 
 let tempC = document.querySelector("#celsius-temp");
-let tempF = document.querySelector("#fahrenheit-temp");
-
-tempC.addEventListener("click", celcius);
-tempF.addEventListener("click", fahrenheit);
+tempC.addEventListener("click", celsius);
 
 function searchLocation(position) {
   let apiKey = "5b60990046534336443d1185d1b26d9b";

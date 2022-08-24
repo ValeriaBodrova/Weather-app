@@ -12,6 +12,11 @@
   
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
+.icon {
+  position:relative;
+  left: -30px;
+  
+}
 .formSearch{
   position: relative;
   top: -57px;
@@ -21,13 +26,14 @@
 }
 h1{
   position: relative;
-  top: -55px;
+  top: -70px;
   left: 87px;
 }
 .temp{
   position: relative;
-  top: -95px;
+  top: -110px;
   left: 135px;
+  
 
 }
 h2{
@@ -40,6 +46,11 @@ h3{
   position: relative;
 top: -60px;
 left: -5px;
+}
+.description {
+  position: relative;
+  top: 10px;
+  left: 5px;
 }
 .search{
   position: relative;
