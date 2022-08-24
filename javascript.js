@@ -22,6 +22,12 @@ function showTemp(response) {
   h1.innerHTML = `${temp}`;
   let h2 = document.querySelector("h2");
   h2.innerHTML = response.data.name;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = response.data.main.wind;
 }
 
 function search(city) {
