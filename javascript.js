@@ -13,6 +13,9 @@ let days = [
 let day = days[now.getDay()];
 let hours = now.getHours();
 let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
 
 h3.innerHTML = `${day}    ${hours}:${minutes}`;
 
@@ -28,6 +31,8 @@ function showTemp(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = response.data.wind.speed;
+  let day1MaxTemp = document.querySelector("#max-T-Day-1");
+  day1MaxTemp.innerHTML = response.data.daily.temp.max;
 }
 
 function search(city) {
@@ -76,3 +81,4 @@ function handlePosition(event) {
 let geolocation = document.querySelector("#current-location");
 geolocation.addEventListener("click", handlePosition);
 search("Kyiv");
+
