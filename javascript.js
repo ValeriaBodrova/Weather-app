@@ -31,8 +31,11 @@ function showTemp(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = response.data.wind.speed;
-  let day1MaxTemp = document.querySelector("#max-T-Day-1");
-  day1MaxTemp.innerHTML = response.data.daily.temp.max;
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+  "src", 
+  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function search(city) {
