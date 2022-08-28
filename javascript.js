@@ -16,8 +16,13 @@ let minutes = now.getMinutes();
 if (minutes < 10) {
   minutes = `0${minutes}`;
 }
-
 h3.innerHTML = `${day}    ${hours}:${minutes}`;
+
+function getForecast(coordinates){
+  let apiKey = "5b60990046534336443d1185d1b26d9b";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}$appid=${apiKey}$units=metric`;
+axios.get(apiUrl).then(getForecast);
+}
 
 function showTemp(response) {
   let temp = Math.round(response.data.main.temp);
@@ -43,6 +48,8 @@ function showTemp(response) {
   "src", 
   `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+
+  getForecast(response.data.coord);
 }
 
 function displayForecast(response){
@@ -134,4 +141,3 @@ let celsiusLink = document.querySelector("#celsius-temp");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Kyiv");
-displayForecast();
