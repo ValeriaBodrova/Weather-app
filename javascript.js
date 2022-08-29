@@ -1,27 +1,41 @@
-let h3 = document.querySelector("h3");
+function formatDate(timesTamp){
 
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
+let now = new Date(timesTamp);
 let hours = now.getHours();
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+  return `${day} ${hours}:${minutes}`;
+
 }
-h3.innerHTML = `${day}    ${hours}:${minutes}`;
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 
 function getForecast(coordinates){
   let apiKey = "5b60990046534336443d1185d1b26d9b";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}$appid=${apiKey}$units=metric`;
-axios.get(apiUrl).then(getForecast);
+  let apiUrl =  `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(displayForecast);
 }
 
 function showTemp(response) {
@@ -31,6 +45,9 @@ function showTemp(response) {
 
   let h2 = document.querySelector("h2");
   h2.innerHTML = response.data.name;
+
+  let h3 = document.querySelector("h3");
+  h3.innerHTML =   formatDate(response.data.dt * 1000);;
 
   celsiusTemperature = response.data.main.temp;
 
@@ -53,30 +70,35 @@ function showTemp(response) {
 }
 
 function displayForecast(response){
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 let forecastHTML = `<div class ="row">`;
-let days =["Sun", "Mon", "Tue"];
-days.forEach(function (day){
+
+forecast.forEach(function(forecastDay, index){
+  if(index < 6){
   forecastHTML = forecastHTML + `
   
   <div class="col-2">
-    <div class="weather-forecast-date">${day}
-    <img src="http://openweathermap.org/img/wn/10d@2x.png" 
+    <div class="weather-forecast-date">${formatDay(forecastDay.dt)}
+    <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" 
     
     id = "icon"
     width ="36"
     />
     <div class ="weather-forecast-temperatures">
     <span class="weather-forecast-temperature-max">
-  24° </span>
+  ${Math.round(forecastDay.temp.max)}° </span>
   <span class="weather-forecast-temperature-mmin">
 
-  16°</span>
+  ${Math.round(forecastDay.temp.min)}°</span>
   </div>
 </div>
     </div>
 
   `;
+
+  }
 });
 
 forecastHTML = forecastHTML + `</div>`;
