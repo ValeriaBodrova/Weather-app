@@ -1,6 +1,6 @@
 body{
-  background-image: url("25503.jpg") !important;
- 
+  background-color: #C6DEFF !important;
+  
 }
 
 .box {
@@ -10,17 +10,17 @@ body{
   padding: 30px;
   border-radius: 10px;
   background-color: #FFC098;
-  font-family: Google Sans,arial,sans-serif;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   opacity: 70%;
 }
 
- .icon{
-  position: relative;
-  top: -15px;
- }
+h1,h2 {
+  font-family: 'Roboto Slab', serif;
+}
 
-
+p{
+  font-family: 'Lato', sans-serif;
+}
 .formSearch{
 width: 395px !important;
   background-color: initial;
@@ -30,18 +30,12 @@ width: 395px !important;
   border: 1px solid #FFF7F3 !important;
 }
 h1{
-  position: relative;
-  top: 15px !important;
-
-  text-align: center;
   font-weight: 400;
 }
-.temp{
 
-  position: relative;
-  top: 35px !important;
-left: -15px;
-
+.firstInfo{
+  display: flex;
+  justify-content: space-around;
 }
 
 .cTemp{
@@ -62,7 +56,7 @@ left: -15px;
 
 
 h2{
-  font-size: 22px !important;
+  font-size: 48px !important;
 
 }
 h3{
@@ -70,27 +64,19 @@ h3{
   
 }
 .description {
-  font-size: 12px;
+  font-size: 15px;
 }
 .btn-primary{
   background-color:#004E71 !important;
 padding: 3px 6px !important;
 border: 1px solid #FFF7F3 !important;
 }
-.col{
-  padding: 3px !important;
-}
-.col-2{
-  padding: 9px !important;
-}
 
-.weather-forecast-date {
+.weather-forecast {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   border-radius: 5px;
-  text-align: center;
-  font-size: 13px;
-  padding: 10px;
-  font-size: 13px;
+
+
 }
 
 .footer{
